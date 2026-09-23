@@ -55,7 +55,7 @@
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .wrap{
-    max-width: 760px;
+    max-width: 820px;
     margin: 0 auto;
     padding: 56px 20px 80px;
   }
@@ -65,7 +65,7 @@
     align-items: baseline;
     padding-bottom: 22px;
     border-bottom: 1px solid var(--line-strong);
-    margin-bottom: 44px;
+    margin-bottom: 56px;
   }
   .wordmark-logo{
     height: 22px;
@@ -81,50 +81,94 @@
     color: var(--ink-soft);
     font-weight: 500;
   }
+
+  .hero{ position: relative; margin-bottom: 56px; }
+  .hero-rule{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .hero-rule .tick{ width: 1px; height: 14px; background: var(--line-strong); }
+  .hero-rule .track{ flex:1; height:1px; background: var(--line); max-width: 60px; }
+  .hero-rule .coord{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
   h1{
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
-    font-size: 34px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    margin: 0 0 12px;
+    font-size: 42px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
   }
   .lede{
     font-family: 'Source Serif 4', serif;
     font-style: italic;
-    font-size: 17px;
+    font-size: 18px;
     color: var(--ink-soft);
-    margin: 0 0 48px;
-    max-width: 520px;
-    line-height: 1.5;
+    margin: 0;
+    max-width: 540px;
+    line-height: 1.55;
   }
+
   .grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 18px;
   }
-  @media (max-width: 560px){
+  @media (max-width: 620px){
     .grid{ grid-template-columns: 1fr; }
   }
+
   a.card{
     display: block;
+    position: relative;
     text-decoration: none;
     color: inherit;
     background: var(--panel);
     border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 26px 24px;
-    transition: transform 0.15s ease, border-color 0.15s ease;
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 26px 26px;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  a.card::after{
+    content: "";
+    position: absolute;
+    top: -60%; right: -30%;
+    width: 220px; height: 220px;
+    background: var(--wash);
+    border-radius: 50%;
+    opacity: 0.55;
+    z-index: 0;
+    transition: opacity 0.18s ease;
   }
   a.card:hover{
-    transform: translateY(-2px);
-    border-color: var(--violet);
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 24px -12px var(--accent);
+  }
+  a.card:hover::after{ opacity: 0.9; }
+
+  .card-top{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
   .card-badge{
-    width: 30px;
-    height: 30px;
-    border-radius: 4px;
-    background: var(--violet-deep);
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    background: var(--accent-deep);
     color: var(--panel);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
@@ -132,29 +176,66 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
+  }
+  .card-stat{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-deep);
+    background: var(--wash);
+    padding: 5px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.01em;
   }
   .card h2{
+    position: relative;
+    z-index: 1;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
-    font-size: 19px;
-    margin: 0 0 8px;
+    font-size: 20px;
+    margin: 0 0 9px;
     color: var(--ink);
   }
   .card p{
+    position: relative;
+    z-index: 1;
     font-size: 14.5px;
-    line-height: 1.55;
+    line-height: 1.58;
     color: var(--ink-soft);
-    margin: 0 0 16px;
+    margin: 0 0 18px;
   }
   .card .go{
+    position: relative;
+    z-index: 1;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 13px;
     font-weight: 600;
-    color: var(--violet-deep);
+    color: var(--accent-deep);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
   }
+  a.card:hover .go{ gap: 8px; }
+  .go svg{ transition: transform 0.18s ease; }
+
+  .card.customer{ --accent:#7A2F52; --accent-deep:#521F37; --wash:#F5EAF0; }
+  .card.investor{ --accent:#1F3A6B; --accent-deep:#12233F; --wash:#E6EAF3; }
+  .card.vendor{ --accent:#3B2E7A; --accent-deep:#241C52; --wash:#ECEAF6; }
+  .card.applicant{ --accent:#6E3F2E; --accent-deep:#472819; --wash:#F5EEE6; }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .card.customer{ --accent:#E7A8C6; --accent-deep:#F3CBDF; --wash:#3A2530; }
+    :root:not([data-theme="light"]) .card.investor{ --accent:#8FA8E0; --accent-deep:#C2D0F0; --wash:#1C2540; }
+    :root:not([data-theme="light"]) .card.vendor{ --accent:#9C8FE0; --accent-deep:#C9C1EF; --wash:#2A2645; }
+    :root:not([data-theme="light"]) .card.applicant{ --accent:#D9A876; --accent-deep:#EFCBA0; --wash:#3A2E1E; }
+  }
+  :root[data-theme="dark"] .card.customer{ --accent:#E7A8C6; --accent-deep:#F3CBDF; --wash:#3A2530; }
+  :root[data-theme="dark"] .card.investor{ --accent:#8FA8E0; --accent-deep:#C2D0F0; --wash:#1C2540; }
+  :root[data-theme="dark"] .card.vendor{ --accent:#9C8FE0; --accent-deep:#C9C1EF; --wash:#2A2645; }
+  :root[data-theme="dark"] .card.applicant{ --accent:#D9A876; --accent-deep:#EFCBA0; --wash:#3A2E1E; }
+
   .footer{
-    margin-top: 56px;
+    margin-top: 60px;
     padding-top: 20px;
     border-top: 1px solid var(--line);
     font-family: 'Space Grotesk', sans-serif;
@@ -171,36 +252,51 @@
       <div class="masthead-tag">Newsletter Campaign</div>
     </div>
 
-    <h1>Four newsletters. Four audiences.</h1>
-    <p class="lede">One coordinated campaign for CynLr — built for Customers, Investors, Vendors, and Job Applicants, each with its own story, sequencing, and call to action.</p>
+    <div class="hero">
+      <div class="hero-rule"><div class="tick"></div><div class="track"></div><div class="coord">Q4 Campaign</div></div>
+      <h1>Four newsletters.<br>Four audiences.</h1>
+      <p class="lede">One coordinated campaign for CynLr — built for Customers, Investors, Vendors, and Job Applicants, each with its own story, sequencing, and call to action.</p>
+    </div>
 
     <div class="grid">
-      <a class="card" href="customer.html">
-        <div class="card-badge">A</div>
+      <a class="card customer" href="customer.html">
+        <div class="card-top">
+          <div class="card-badge">A</div>
+          <div class="card-stat">70% cost gap</div>
+        </div>
         <h2>Customer</h2>
         <p>Amazon, Jaguar Land Rover, and Bajaj — real pain points CynLr's Object Intelligence solves.</p>
-        <div class="go">Open newsletter →</div>
+        <div class="go">Open newsletter <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8.5 1L13 5L8.5 9M13 5H1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
-      <a class="card" href="investor.html">
-        <div class="card-badge">$</div>
+      <a class="card investor" href="investor.html">
+        <div class="card-top">
+          <div class="card-badge">$</div>
+          <div class="card-stat">$10M raised</div>
+        </div>
         <h2>Investor</h2>
         <p>The $10M Series A, press validation, and the manufacturers converging on the same gap.</p>
-        <div class="go">Open newsletter →</div>
+        <div class="go">Open newsletter <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8.5 1L13 5L8.5 9M13 5H1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
-      <a class="card" href="vendor.html">
-        <div class="card-badge">V</div>
+      <a class="card vendor" href="vendor.html">
+        <div class="card-top">
+          <div class="card-badge">V</div>
+          <div class="card-stat">4 OEM partners</div>
+        </div>
         <h2>Vendor</h2>
         <p>Kassow, UR, KUKA, and Doosan — where CynLr is co-developing with OEM partners.</p>
-        <div class="go">Open newsletter →</div>
+        <div class="go">Open newsletter <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8.5 1L13 5L8.5 9M13 5H1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
-      <a class="card" href="applicant.html">
-        <div class="card-badge">J</div>
+      <a class="card applicant" href="applicant.html">
+        <div class="card-top">
+          <div class="card-badge">J</div>
+          <div class="card-stat">60 → 120 team</div>
+        </div>
         <h2>Job Applicant</h2>
         <p>The Swiss lab, elite research access, and a team about to double in size.</p>
-        <div class="go">Open newsletter →</div>
+        <div class="go">Open newsletter <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M8.5 1L13 5L8.5 9M13 5H1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
     </div>
 
